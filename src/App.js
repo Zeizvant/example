@@ -1,25 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function Car(props){
+  return <li>I am a { props.brand }</li>;
 }
 
-export default App;
+export function Garage() {
+  const cars = ['Ford', 'BWM', 'Audi', 'Mercedes'];
+  return (
+    <>
+      <h1>Who lives in my garage?</h1>
+      <ul>
+        {cars.map((car) => <Car brand={car}/>)}
+      </ul>
+    </>
+    
+  )
+}
