@@ -1,20 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
-import React from 'react';
+import React, {useEffect, useState, Component} from 'react';
 
-function Car(props){
-  return <li>I am a { props.brand }</li>;
-}
+export function Counter(){
+  const [time, setTime] = useState(0);
+  const [name, setName] = useState('');
 
-export function Garage() {
-  const cars = [{id: 1, brand:'Ford'}, {id: 2, brand: "BWM"}, {id:3, brand:"Audi"}, {id:4, brand: "Mercedes"}];
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setTime((prev) => prev + 1) 
+    }, 1000)
+    return () => {clearInterval(intervalId)}
+  }, [])
+
+  const handleChange = ({target}) => {
+    setName(target.value)
+  }
+
   return (
     <>
-      <h1>Who lives in my garage?</h1>
-      <ul>
-        {cars.map((car) => <Car key={car.id} brand={car.brand}/>)}
-      </ul>
+      <h1>Time: {time}</h1>
+      <input type='text' value={name} onChange={handleChange} />
     </>
-    
   )
+
 }
